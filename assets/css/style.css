@@ -1,0 +1,18 @@
+.container{
+    text-align: center;
+    margin: 0 auto;
+}
+
+.header{
+    justify-content: center;
+}
+
+#generate{
+    margin: 25px 0px;
+    justify-content: center;
+}
+
+.house, .region, .words, .titles{
+    text-align: center;
+    margin: 20px;
+}
