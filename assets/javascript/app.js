@@ -5,6 +5,7 @@ $(document).ready(function(){
 
         let houseNumber = Math.floor(Math.random() * 445);
         let url = 'https://anapioficeandfire.com/api/houses/' + houseNumber;
+        console.log(houseNumber);
 
         $.ajax({
             url: url,
@@ -18,6 +19,14 @@ $(document).ready(function(){
             } else {
                 $('#words').html(response.words);
             }
+
+            $('#titles').html(response.titles);
+
+            $('#current-lord').html(response.currentLord);
+
+            $('#heir').html(response.heir);
+
+            $('#overlord').html(response.overlord);
         });
     })
 });

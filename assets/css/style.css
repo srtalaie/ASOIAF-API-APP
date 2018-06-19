@@ -12,7 +12,7 @@
     justify-content: center;
 }
 
-.house, .region, .words, .titles{
+.house, .region, .words, .titles, .seats, .current-lord, .heir, .overlord, .cadet-branches, .sworn-members, .ancestral-weapons{
     text-align: center;
     margin: 20px;
 }
