@@ -27,6 +27,18 @@ $(document).ready(function(){
             $('#heir').html(response.heir);
 
             $('#overlord').html(response.overlord);
+
+            console.log(getPeople(response.overlord));
+
+            function getPeople(personUrl){
+                $.ajax({
+                    url: personUrl,
+                    method: 'GET'
+                }).then(function(res){
+                    return res.name;
+                    console.log(res.name);
+                });
+            }
         });
     })
 });
