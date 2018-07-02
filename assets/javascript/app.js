@@ -5,11 +5,37 @@ $(document).ready(function(){
 
         let houseNumber = Math.floor(Math.random() * 445);
         let url = 'https://anapioficeandfire.com/api/houses/' + houseNumber;
-        console.log(houseNumber);
 
         $.ajax({
             url: url,
-            method: "GET"
+            method: "GET",
+            success: function(res){
+                let overLordHouseURL = res.overlord;
+                $.ajax({
+                    url: overLordHouseURL,
+                    method: 'GET',
+                    success: function(res){
+                        let currentLordURL = res.currentLord
+                        $.ajax({
+                            url: currentLordURL,
+                            method: 'GET',
+                            success: function(res){
+                                let heirURL = res.heir;
+                                $.ajax({
+                                    url: heirURL,
+                                    method: 'GET',
+                            }).then(function(res){
+                                $('#heir').html(res.name);
+                            });
+                        }
+                        }).then(function(res){
+                            $('#current-lord').html(res.name);
+                        });
+                    }
+                }).then(function(res){
+                    $('#overlord').html(res.name);
+                });
+            }
         }).then(function(response){
             $('#house').html(response.name);
             $('#region').html(response.region);
@@ -20,25 +46,13 @@ $(document).ready(function(){
                 $('#words').html(response.words);
             }
 
-            $('#titles').html(response.titles);
+            $('#titles').html(response.titles + ' ');
 
             $('#current-lord').html(response.currentLord);
 
-            $('#heir').html(response.heir);
+            $('#seats').html(response.seats + ' ');
 
-            $('#overlord').html(response.overlord);
-
-            console.log(getPeople(response.overlord));
-
-            function getPeople(personUrl){
-                $.ajax({
-                    url: personUrl,
-                    method: 'GET'
-                }).then(function(res){
-                    return res.name;
-                    console.log(res.name);
-                });
-            }
+            $('#ancestral-weapons').html(response.ancestralWeapons);
         });
-    })
+    });
 });
