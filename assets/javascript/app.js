@@ -86,6 +86,9 @@ $(document).ready(function(){
             url: url,
             method: 'GET',
             success: function(res3){
+                if (res3.swornMembers.length === 0){
+                    $('#sworn-members-list').html(`This House has no Sworn Members`);
+                }
                 for (let x = 0; x < res3.swornMembers.length; x++){
                     let swornMembersURL = res3.swornMembers[x];
                     $.ajax({
@@ -122,6 +125,10 @@ $(document).ready(function(){
             url: url,
             method: 'GET',
             success: function(res5){
+                if (res5.cadetBranches.length === 0){
+                    $('#cadet-branches-list').html(`This House has no Cadet Branches`);
+                    return;
+                }
                 for (let x = 0; x < res5.cadetBranches.length; x++){
                     let cadetBranchesURL = res5.cadetBranches[x];
                     $.ajax({
